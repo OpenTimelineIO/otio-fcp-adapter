@@ -3,7 +3,7 @@
 The `fcp_xml` adapter is part of OpenTimelineIO's core adapter plugins.  
 It provides reading and writing of Final Cut Pro 7 formatted XML files. 
 For more information on the FCP XML format please check the links in the 
-[reference](edl-references) section 
+[reference](#fcp7-xml-references) section 
 
 # Adapter Feature Matrix
 
