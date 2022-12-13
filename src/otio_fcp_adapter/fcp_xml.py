@@ -696,7 +696,7 @@ class FCP7XMLParser:
         local_context = context.context_pushing_element(element)
 
         tracks = []
-        media_type_elements = self._derefed_iterfind(element, "/")
+        media_type_elements = self._derefed_iterfind(element, "./")
         for media_type_element in media_type_elements:
             try:
                 track_kind = _track_kind_from_element(media_type_element)
