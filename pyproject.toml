@@ -41,7 +41,7 @@ Homepage = "https://github.com/OpenTimelineIO/otio-fcp-adapter"
 Tracker = "https://github.com/OpenTimelineIO/otio-fcp-adapter/issues"
 
 [project.entry-points."opentimelineio.plugins"]
-otio_cmx3600_adapter = "otio_fcp_adapter"
+otio_fcp_adapter = "otio_fcp_adapter"
 
 [tool.hatch.build.targets.sdist]
 # Ensure the sdist includes a setup.py for older pip versions
