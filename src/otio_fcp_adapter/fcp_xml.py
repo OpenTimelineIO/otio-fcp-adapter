@@ -1049,6 +1049,9 @@ class FCP7XMLParser:
         markers = markers_from_element(clipitem_element, context)
         item.markers.extend(markers)
 
+        # set enabled status
+        item.enabled = _bool_value(clipitem_element.find("./enabled"))
+
         # Find the in time (source time relative to media start)
         clip_rate = _rate_from_context(local_context)
         in_value = float(clipitem_element.find('./in').text)
