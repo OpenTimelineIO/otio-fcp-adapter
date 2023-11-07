@@ -31,7 +31,9 @@ FILTER_JSON_EXAMPLE_PATH = os.path.join(
 GENERATOR_XML_EXAMPLE_PATH = os.path.join(
     SAMPLE_DATA_DIR, "premiere_generators.xml"
 )
-
+ENABLE_PROPERTY_EXAMPLE_PATH = os.path.join(
+    SAMPLE_DATA_DIR, "premiere_enable_property.xml"
+)
 
 class TestFcp7XmlUtilities(unittest.TestCase, test_utils.OTIOAssertions):
     adapter = adapters.from_name('fcp_xml').module()
@@ -1473,6 +1475,15 @@ class AdaptersFcp7XmlTest(unittest.TestCase, test_utils.OTIOAssertions):
                 for item in video_track if not isinstance(item, schema.Gap)
             )
         )
+
+    def test_enable_property(self):
+        timeline = adapters.read_from_file(ENABLE_PROPERTY_EXAMPLE_PATH)
+        self.assertEqual(timeline.tracks[2].enabled, False)
+        self.assertEqual(list(timeline.tracks[2].each_clip())[0].enabled, False)
+
+    def test_track_name_property(self):
+        timeline = adapters.read_from_file(ENABLE_PROPERTY_EXAMPLE_PATH)
+        self.assertEqual(timeline.tracks[2].name, "disabled_track")
 
 
 if __name__ == '__main__':
