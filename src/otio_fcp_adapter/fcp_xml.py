@@ -746,10 +746,14 @@ class FCP7XMLParser:
         track_metadata = {META_NAMESPACE: md_dict} if md_dict else None
 
         track = schema.Track(
-            name=track_name,
+            name=track_metadata.get("fcp_xml", {}).get("@MZ.TrackName",
+                                                       track_name),
             kind=track_kind,
             metadata=track_metadata,
         )
+
+        # set enabled status
+        track.enabled = _bool_value(track_element.find("./enabled"))
 
         # Iterate through and parse track items
         track_rate = _rate_from_context(local_context)
