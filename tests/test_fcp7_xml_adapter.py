@@ -1478,13 +1478,19 @@ class AdaptersFcp7XmlTest(unittest.TestCase, test_utils.OTIOAssertions):
 
     def test_enable_property(self):
         timeline = adapters.read_from_file(ENABLE_PROPERTY_EXAMPLE_PATH)
+
+        # Check for tracks disabled/enabled
         self.assertEqual(timeline.tracks[2].enabled, False)
         self.assertTrue(timeline.tracks[1].enabled)
+
+        # Check for a clipitem disabled/enabled
         self.assertEqual(list(timeline.tracks[2].each_clip())[0].enabled, False)
         self.assertTrue(list(timeline.tracks[0].each_clip())[0].enabled)
 
     def test_track_name_property(self):
         timeline = adapters.read_from_file(ENABLE_PROPERTY_EXAMPLE_PATH)
+
+        # Check for proper track name propagation
         self.assertEqual(timeline.tracks[2].name, "disabled_track")
 
 
