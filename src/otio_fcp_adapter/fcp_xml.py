@@ -745,9 +745,10 @@ class FCP7XMLParser:
         md_dict = _xml_tree_to_dict(track_element, timeline_item_tags)
         track_metadata = {META_NAMESPACE: md_dict} if md_dict else None
 
+        track_name = (track_metadata.get("fcp_xml", {}).get("@MZ.TrackName",
+                                                           track_name) if track_metadata else track_name)
         track = schema.Track(
-            name=track_metadata.get("fcp_xml", {}).get("@MZ.TrackName",
-                                                       track_name),
+            name=track_name,
             kind=track_kind,
             metadata=track_metadata,
         )

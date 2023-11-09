@@ -35,6 +35,7 @@ ENABLE_PROPERTY_EXAMPLE_PATH = os.path.join(
     SAMPLE_DATA_DIR, "premiere_enable_property.xml"
 )
 
+
 class TestFcp7XmlUtilities(unittest.TestCase, test_utils.OTIOAssertions):
     adapter = adapters.from_name('fcp_xml').module()
 
@@ -1484,14 +1485,16 @@ class AdaptersFcp7XmlTest(unittest.TestCase, test_utils.OTIOAssertions):
         self.assertTrue(timeline.tracks[1].enabled)
 
         # Check for a clipitem disabled/enabled
-        self.assertEqual(list(timeline.tracks[2].each_clip())[0].enabled, False)
-        self.assertTrue(list(timeline.tracks[0].each_clip())[0].enabled)
+        self.assertEqual(timeline.tracks[2][1].enabled, False)
+        self.assertTrue(timeline.tracks[0][0].enabled)
 
     def test_track_name_property(self):
         timeline = adapters.read_from_file(ENABLE_PROPERTY_EXAMPLE_PATH)
 
         # Check for proper track name propagation
         self.assertEqual(timeline.tracks[2].name, "disabled_track")
+        self.assertEqual(timeline.audio_tracks()[0].name, "audio_with_disabled")
+        self.assertEqual(timeline.audio_tracks()[1].name, "")
 
 
 if __name__ == '__main__':
