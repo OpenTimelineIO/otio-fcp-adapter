@@ -126,7 +126,7 @@ def _bool_value(element):
 
     :return: A boolean.
     """
-    return (element.text.lower() == "true") if element else False
+    return (element.text.lower() == "true") if element is not None else False
 
 
 def _element_identification_string(element):
