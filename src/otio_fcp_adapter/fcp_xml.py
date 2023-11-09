@@ -126,7 +126,7 @@ def _bool_value(element):
 
     :return: A boolean.
     """
-    return (element.text.lower() == "true") if element is not None else False
+    return (element.text.lower() == "true")
 
 
 def _element_identification_string(element):
@@ -755,7 +755,9 @@ class FCP7XMLParser:
         )
 
         # set enabled status
-        track.enabled = _bool_value(track_element.find("./enabled"))
+        enabled_property = track_element.find("./enabled")
+        if enabled_property is not None:
+            track.enabled = _bool_value(enabled_property)
 
         # Iterate through and parse track items
         track_rate = _rate_from_context(local_context)
@@ -1056,7 +1058,9 @@ class FCP7XMLParser:
         item.markers.extend(markers)
 
         # set enabled status
-        item.enabled = _bool_value(clipitem_element.find("./enabled"))
+        enabled_property = clipitem_element.find("./enabled")
+        if enabled_property is not None:
+            item.enabled = _bool_value(enabled_property)
 
         # Find the in time (source time relative to media start)
         clip_rate = _rate_from_context(local_context)
