@@ -745,11 +745,20 @@ class FCP7XMLParser:
         md_dict = _xml_tree_to_dict(track_element, timeline_item_tags)
         track_metadata = {META_NAMESPACE: md_dict} if md_dict else None
 
+        if track_metadata:
+            track_name = (track_metadata.get("fcp_xml", {}).
+                          get("@MZ.TrackName",
+                              track_name))
         track = schema.Track(
             name=track_name,
             kind=track_kind,
             metadata=track_metadata,
         )
+
+        # set enabled status
+        enabled_property = track_element.find("./enabled")
+        if enabled_property is not None:
+            track.enabled = _bool_value(enabled_property)
 
         # Iterate through and parse track items
         track_rate = _rate_from_context(local_context)
@@ -1048,6 +1057,11 @@ class FCP7XMLParser:
         # Add the markers
         markers = markers_from_element(clipitem_element, context)
         item.markers.extend(markers)
+
+        # set enabled status
+        enabled_property = clipitem_element.find("./enabled")
+        if enabled_property is not None:
+            item.enabled = _bool_value(enabled_property)
 
         # Find the in time (source time relative to media start)
         clip_rate = _rate_from_context(local_context)
