@@ -15,7 +15,7 @@ license = { file="LICENSE" }
 readme = "README.md"
 requires-python = ">=3.7"
 dependencies = [
-    "opentimelineio >= 0.15.0"
+    "opentimelineio >= 0.17.0.dev1"
 ]
 
 classifiers = [
@@ -31,10 +31,11 @@ classifiers = [
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
     "Operating System :: OS Independent",
     "Natural Language :: English"
 ]
-keywords = ["film", "tv", "editing", "editorial", "edit", "non-linear", "xml", "time", "otio", "otio-adapter"]
+keywords = ["film", "tv", "editing", "editorial", "edit", "non-linear", "fcp", "xml", "time", "otio", "otio-adapter"]
 
 [project.urls]
 Homepage = "https://github.com/OpenTimelineIO/otio-fcp-adapter"
