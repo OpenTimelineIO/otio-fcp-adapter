@@ -22,6 +22,10 @@ jobs:
         python-version: [ "3.7", "3.8", "3.9", "3.10", "3.11" ]
         os: [ ubuntu-latest, macos-latest, windows-latest ]
         otio-version: [ "0.17.0", "main" ]
+        exclude:
+          - { os: macos-latest, python-version: 3.7 }
+          - { os: macos-latest, python-version: 3.8 }
+          - { os: macos-latest, python-version: 3.9 }
 
     runs-on: ${{ matrix.os }}
 
@@ -39,7 +43,7 @@ jobs:
           if [[ "${{ matrix.otio-version }}" == "main" ]]; then
             pip install "git+https://github.com/AcademySoftwareFoundation/OpenTimelineIO.git"
           else
-            pip install OpenTimelineIO>=${{ matrix.otio-version }} --pre --only-binary :all:
+            pip install OpenTimelineIO>=${{ matrix.otio-version }} --only-binary :all:
           fi
           pip install flake8 pytest pytest-cov
         shell: bash
