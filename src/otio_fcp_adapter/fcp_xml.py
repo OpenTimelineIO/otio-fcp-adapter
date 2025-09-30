@@ -1515,8 +1515,14 @@ def _build_file(media_reference, br_map):
     if not file_e.find("media"):
         file_media_e = _get_or_create_subelement(file_e, "media")
 
-        audio_exts = {'.wav', '.aac', '.mp3', '.aif', '.aiff', '.m4a'}
-        has_video = (os.path.splitext(url_path)[1].lower() not in audio_exts)
+        if isinstance(media_reference, schema.ExternalReference):
+            audio_exts = {'.wav', '.aac', '.mp3', '.aif', '.aiff', '.m4a'}
+            has_video = (os.path.splitext(url_path)[1].lower() not in audio_exts)
+        else:
+            # TODO: This is assuming all files have a video track. Not sure what
+            # the implications of that are.
+            has_video = True
+
         if has_video and file_media_e.find("video") is None:
             _append_new_sub_element(file_media_e, "video")
 
