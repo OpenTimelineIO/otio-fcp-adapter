@@ -1506,5 +1506,6 @@ class AdaptersFcp7XmlTest(unittest.TestCase, test_utils.OTIOAssertions):
         # OTIO -> tempfile.xml
         adapters.write_to_file(timeline, tmp_path)
 
+
 if __name__ == '__main__':
     unittest.main()
