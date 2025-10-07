@@ -34,6 +34,9 @@ GENERATOR_XML_EXAMPLE_PATH = os.path.join(
 ENABLE_PROPERTY_EXAMPLE_PATH = os.path.join(
     SAMPLE_DATA_DIR, "premiere_enable_property.xml"
 )
+OTIO_IMG_SEQ_MEDIA_REFERENCE_PATH = os.path.join(
+    SAMPLE_DATA_DIR, "img_seq_media_reference.otio"
+)
 
 
 class TestFcp7XmlUtilities(unittest.TestCase, test_utils.OTIOAssertions):
@@ -1495,6 +1498,13 @@ class AdaptersFcp7XmlTest(unittest.TestCase, test_utils.OTIOAssertions):
         self.assertEqual(timeline.tracks[2].name, "disabled_track")
         self.assertEqual(timeline.audio_tracks()[0].name, "audio_with_disabled")
         self.assertEqual(timeline.audio_tracks()[1].name, "")
+
+    def test_img_seq_media_references(self):
+        timeline = adapters.read_from_file(OTIO_IMG_SEQ_MEDIA_REFERENCE_PATH)
+        tmp_path = tempfile.mkstemp(suffix=".xml", text=True)[1]
+
+        # OTIO -> tempfile.xml
+        adapters.write_to_file(timeline, tmp_path)
 
 
 if __name__ == '__main__':

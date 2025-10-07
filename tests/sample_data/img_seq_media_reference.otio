@@ -1,0 +1,87 @@
+{
+  "OTIO_SCHEMA": "Timeline.1",
+  "metadata": {},
+  "name": "media reference",
+  "global_start_time": {
+    "OTIO_SCHEMA": "RationalTime.1",
+    "rate": 24.0,
+    "value": 86400.0
+  },
+  "tracks": {
+    "OTIO_SCHEMA": "Stack.1",
+    "metadata": {},
+    "name": "",
+    "source_range": null,
+    "effects": [],
+    "markers": [],
+    "enabled": true,
+    "color": null,
+    "children": [
+      {
+        "OTIO_SCHEMA": "Track.1",
+        "metadata": {},
+        "name": "",
+        "source_range": null,
+        "effects": [],
+        "markers": [],
+        "enabled": true,
+        "color": null,
+        "children": [
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "metadata": {},
+            "name": "PREGRADE MIXDOWN",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "rate": 24.0,
+                "value": 159.0
+              },
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "rate": 24.0,
+                "value": 900000.0
+              }
+            },
+            "effects": [],
+            "markers": [],
+            "enabled": true,
+            "color": null,
+            "media_references": {
+              "DEFAULT_MEDIA": {
+                "OTIO_SCHEMA": "ImageSequenceReference.1",
+                "metadata": {},
+                "name": "OpenEXR",
+                "available_range": {
+                  "OTIO_SCHEMA": "TimeRange.1",
+                  "duration": {
+                    "OTIO_SCHEMA": "RationalTime.1",
+                    "rate": 24.0,
+                    "value": 159.0
+                  },
+                  "start_time": {
+                    "OTIO_SCHEMA": "RationalTime.1",
+                    "rate": 24.0,
+                    "value": 125.0
+                  }
+                },
+                "available_image_bounds": null,
+                "target_url_base": "/tmp",
+                "name_prefix": "PREGRADE MIXDOWN.",
+                "name_suffix": ".exr",
+                "start_frame": 125,
+                "frame_step": 1,
+                "rate": 24.0,
+                "frame_zero_padding": 0,
+                "missing_frame_policy": "error"
+              }
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA"
+          }
+        ],
+        "kind": "Video"
+      }
+    ]
+  }
+}

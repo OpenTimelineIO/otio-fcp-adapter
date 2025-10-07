@@ -1480,6 +1480,19 @@ def _build_file(media_reference, br_map):
             media_reference.name if media_reference.name
             else os.path.basename(url_path)
         )
+    elif isinstance(media_reference, schema.ImageSequenceReference):
+        _append_new_sub_element(
+            file_e, 'pathurl', text=media_reference.abstract_target_url(
+                f"%0{media_reference.frame_zero_padding}d")
+        )
+        url_path = _url_to_path(media_reference.abstract_target_url(
+            f"%0{media_reference.frame_zero_padding}d")
+        )
+
+        fallback_file_name = (
+            media_reference.name if media_reference.name
+            else os.path.basename(url_path)
+        )
     elif isinstance(media_reference, schema.GeneratorReference):
         _append_new_sub_element(
             file_e, 'mediaSource', text=media_reference.generator_kind
