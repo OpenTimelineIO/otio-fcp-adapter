@@ -68,7 +68,7 @@
                 },
                 "available_image_bounds": null,
                 "target_url_base": "/tmp",
-                "name_prefix": "PREGRADE MIXDOWN",
+                "name_prefix": "PREGRADE MIXDOWN.",
                 "name_suffix": ".exr",
                 "start_frame": 125,
                 "frame_step": 1,
