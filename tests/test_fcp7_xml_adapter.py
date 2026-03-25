@@ -933,6 +933,52 @@ class TestFcp7XmlElements(unittest.TestCase, test_utils.OTIOAssertions):
         )
 
 
+    def test_transition_offset_rate(self):
+        transition_element = cElementTree.fromstring(
+            """
+            <transitionitem>
+                <start>44</start>
+                <end>54</end>
+                <alignment>end-black</alignment>
+                <cutPointTicks>105840000000</cutPointTicks>
+                <rate>
+                    <timebase>25</timebase>
+                    <ntsc>FALSE</ntsc>
+                </rate>
+                <effect>
+                    <name>Cross Dissolve</name>
+                    <effectid>Cross Dissolve</effectid>
+                    <effectcategory>Dissolve</effectcategory>
+                    <effecttype>transition</effecttype>
+                    <mediatype>video</mediatype>
+                    <wipecode>0</wipecode>
+                    <wipeaccuracy>100</wipeaccuracy>
+                    <startratio>0</startratio>
+                    <endratio>0</endratio>
+                    <reverse>FALSE</reverse>
+                </effect>
+            </transitionitem>
+            """
+        )
+
+        track_element = cElementTree.fromstring(
+            """
+            <track>
+                <rate>
+                    <timebase>60</timebase>
+                    <ntsc>FALSE</ntsc>
+                </rate>
+            </track>
+            """
+        )
+        context = self.adapter._Context(track_element)
+
+        parser = self.adapter.FCP7XMLParser(transition_element)
+        transition = parser.transition_for_element(transition_element, context)
+
+        self.assertEqual(transition.in_offset.rate, 25)
+
+
 class AdaptersFcp7XmlTest(unittest.TestCase, test_utils.OTIOAssertions):
     adapter = adapters.from_name('fcp_xml').module()
 
