@@ -932,7 +932,6 @@ class TestFcp7XmlElements(unittest.TestCase, test_utils.OTIOAssertions):
             schema.TransitionTypes.SMPTE_Dissolve,
         )
 
-
     def test_transition_offset_rate(self):
         transition_element = cElementTree.fromstring(
             """
