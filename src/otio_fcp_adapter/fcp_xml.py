@@ -1122,8 +1122,12 @@ class FCP7XMLParser:
 
         :return: The :class: `schema.Transition` instance.
         """
-        # start and end times are in the parent's rate
-        rate = _rate_from_context(context)
+        # Attempt to get start and end time rate from the transition element and fallback on the parent
+        local_context = context.context_pushing_element(item_element)
+        rate = _rate_from_context(local_context)
+        if rate is None:
+            rate = _rate_from_context(context)
+
         start = opentime.RationalTime(
             int(item_element.find('./start').text),
             rate
